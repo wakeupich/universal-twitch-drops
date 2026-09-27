@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch Drops Farmer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo-box">
+      <img src="icons/icon48.png" alt="Logo" class="logo">
+      <div>
+        <div class="title">Drops Farmer</div>
+        <div class="subtitle" id="user-status">Авто-сбор & Хоппер</div>
+      </div>
+    </div>
+    <button id="refresh-btn" class="icon-btn" title="Обновить статус">🔄</button>
+  </div>
+
+  <!-- Realtime Farm Status Banner -->
+  <div class="status-banner" id="status-banner">
+    <div class="status-indicator-box">
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-headline" id="status-headline">Проверка статуса...</span>
+    </div>
+    <div class="status-detail" id="status-detail">Сканирую открытые вкладки и сервер Twitch...</div>
+    <button id="open-twitch-btn" class="action-btn" style="display: none;">▶️ Открыть Twitch со стримом</button>
+  </div>
+
+  <!-- Quick Claim Alert Box (shows only if 100% ready drop waiting) -->
+  <div class="claim-alert-box" id="claim-alert-box" style="display: none;">
+    <div class="claim-alert-title">🎁 Награда готова к получению!</div>
+    <div class="claim-alert-name" id="claim-alert-name">Дропс 100%</div>
+    <button id="claim-now-btn" class="claim-action-btn">⚡ Забрать в инвентарь сейчас</button>
+  </div>
+
+  <!-- Game Selector -->
+  <div class="section">
+    <label class="section-title">Целевая игра для фарма:</label>
+    <select id="game-select" class="dropdown">
+      <option value="auto">⚡ Авто-выбор (следующая доступная)</option>
+    </select>
+  </div>
+
+  <!-- Active Drop Progress Card -->
+  <div class="section" id="active-campaign-card">
+    <div class="card-header">
+      <span class="game-badge" id="card-game-name">Загрузка...</span>
+      <span class="percent-badge" id="card-percent">0%</span>
+    </div>
+    <div class="drop-name" id="card-drop-name">Проверка активных наград...</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="card-progress-bar" style="width: 0%;"></div>
+    </div>
+    <div class="progress-info-row">
+      <span id="card-channel-info">Канал: —</span>
+      <span id="card-time-label">0 / 0 мин</span>
+    </div>
+    <!-- Next in queue info -->
+    <div class="next-drop-row" id="next-drop-row" style="display: none;">
+      <span class="next-drop-label">Следом:</span>
+      <span class="next-drop-val" id="next-drop-val">—</span>
+    </div>
+  </div>
+
+  <!-- Collapsible All Drops List -->
+  <div class="section drops-accordion-section">
+    <button class="accordion-toggle" id="drops-accordion-btn">
+      <span id="accordion-title">📋 Все награды кампании</span>
+      <span class="accordion-icon" id="accordion-icon">▼</span>
+    </button>
+    <div class="accordion-content" id="drops-accordion-content" style="display: none;">
+      <div id="all-drops-list" class="all-drops-list">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toggles -->
+  <div class="section toggles-section">
+    <div class="toggle-row">
+      <span>Авто-клейм наград (Claim)</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-claim" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Авто-хоппер (если оффлайн)</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-hop" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Уведомления на рабочий стол</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-notify" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span id="footer-status">Готов к работе</span>
+    <a href="https://www.twitch.tv/drops/inventory" target="_blank" class="inv-link">Инвентарь ↗</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
